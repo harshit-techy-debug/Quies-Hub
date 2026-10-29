@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quies Hub - Explore Categories</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #e0f2fe;
+            --bg-gradient: radial-gradient(circle at 10% 20%, rgba(224, 242, 254, 1) 0%, rgba(243, 232, 255, 1) 50%, rgba(252, 231, 243, 1) 100%);
+            --text-dark: #1e1b4b;
+            --text-muted: #4b5563;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --glass-inner: inset 0 0 20px rgba(255, 255, 255, 0.6);
+            --card-prog-bg: linear-gradient(135deg, rgba(224, 242, 254, 0.6), rgba(255, 255, 255, 0.4));
+            --card-net-bg: linear-gradient(135deg, rgba(224, 242, 254, 0.7), rgba(255, 255, 255, 0.4));
+            --card-db-bg: linear-gradient(135deg, rgba(243, 232, 255, 0.6), rgba(255, 255, 255, 0.4));
+            --card-os-bg: linear-gradient(135deg, rgba(224, 242, 254, 0.6), rgba(255, 255, 255, 0.4));
+            --card-gk-bg: linear-gradient(135deg, rgba(254, 249, 195, 0.5), rgba(255, 255, 255, 0.4));
+            --card-math-bg: linear-gradient(135deg, rgba(243, 232, 255, 0.5), rgba(255, 255, 255, 0.4));
+            --card-web-bg: linear-gradient(135deg, rgba(207, 250, 254, 0.6), rgba(255, 255, 255, 0.4));
+            --card-lead-bg: linear-gradient(135deg, rgba(252, 231, 243, 0.6), rgba(255, 255, 255, 0.4));
+            --card-dsa-bg: linear-gradient(135deg, rgba(209, 250, 229, 0.6), rgba(255, 255, 255, 0.4));
+            --card-ai-bg: linear-gradient(135deg, rgba(251, 207, 232, 0.5), rgba(255, 255, 255, 0.4));
+            --card-security-bg: linear-gradient(135deg, rgba(224, 231, 255, 0.6), rgba(255, 255, 255, 0.4));
+            --card-cloud-bg: linear-gradient(135deg, rgba(224, 242, 254, 0.5), rgba(255, 255, 255, 0.4));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1) 60%, rgba(186, 230, 253, 0.3) 100%);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.8), inset -10px -10px 20px rgba(180, 200, 255, 0.4), 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: -1;
+            animation: float 10s infinite ease-in-out alternate;
+            backdrop-filter: blur(4px);
+        }
+
+        .bubble-1 {
+            width: 180px;
+            height: 180px;
+            top: -40px;
+            left: -40px;
+            animation-delay: 0s;
+        }
+
+        .bubble-2 {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 15%;
+            animation-delay: -3s;
+        }
+
+        .bubble-3 {
+            width: 220px;
+            height: 220px;
+            top: -50px;
+            right: 5%;
+            animation-delay: -5s;
+        }
+
+        .bubble-4 {
+            width: 60px;
+            height: 60px;
+            bottom: 25%;
+            left: 5%;
+            animation-delay: -2s;
+        }
+
+        .bubble-5 {
+            width: 140px;
+            height: 140px;
+            bottom: -20px;
+            right: 10%;
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(-40px) scale(1.05);
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            z-index: -1;
+            animation: twinkle 4s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.1;
+                transform: scale(0.5);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        header {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 35px;
+            z-index: 100;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            z-index: 102;
+        }
+
+        .nav-logo-img {
+            height: 85px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #10b981, #3b82f6);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGradient 5s linear infinite;
+        }
+
+        @keyframes logoGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 300% 50%;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 800;
+            margin-left: 20px;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #8b5cf6;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 102;
+        }
+
+        .menu-toggle .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-dark);
+            border-radius: 10px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        main {
+            flex: 1;
+            padding: 150px 20px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .title-explore {
+            color: #3b82f6;
+        }
+
+        .title-categories {
+            background: linear-gradient(90deg, #ec4899, #f59e0b, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .leaf-icon {
+            color: #38bdf8;
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px rgba(56, 189, 248, 0.4));
+        }
+
+        .page-header p {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-radius: 32px;
+            border: 2px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), var(--glass-inner);
+            backdrop-filter: blur(24px) saturate(150%);
+            -webkit-backdrop-filter: blur(24px) saturate(150%);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(31, 38, 135, 0.1), inset 0 0 25px rgba(255, 255, 255, 0.9);
+        }
+
+        .card.programming {
+            background: var(--card-prog-bg);
+        }
+
+        .card.networks {
+            background: var(--card-net-bg);
+        }
+
+        .card.dbms {
+            background: var(--card-db-bg);
+        }
+
+        .card.os {
+            background: var(--card-os-bg);
+        }
+
+        .card.gk {
+            background: var(--card-gk-bg);
+        }
+
+        .card.math {
+            background: var(--card-math-bg);
+        }
+
+        .card.web {
+            background: var(--card-web-bg);
+        }
+
+        .card.leaderboard {
+            background: var(--card-lead-bg);
+        }
+
+        .card.dsa {
+            background: var(--card-dsa-bg);
+        }
+
+        .card.ai {
+            background: var(--card-ai-bg);
+        }
+
+        .card.security {
+            background: var(--card-security-bg);
+        }
+
+        .card.cloud {
+            background: var(--card-cloud-bg);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+
+        .icon-box {
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), inset 2px 2px 5px rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .icon-prog {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+        }
+
+        .icon-net {
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+        }
+
+        .icon-db {
+            background: linear-gradient(135deg, #c084fc, #8b5cf6);
+        }
+
+        .icon-os {
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+        }
+
+        .icon-gk,
+        .icon-lead {
+            font-size: 2.5rem;
+            box-shadow: none;
+            border: none;
+            background: none;
+            width: auto;
+            height: auto;
+        }
+
+        .icon-gk {
+            color: #fbbf24;
+            filter: drop-shadow(0 4px 6px rgba(251, 191, 36, 0.4));
+        }
+
+        .icon-lead {
+            color: #f59e0b;
+            filter: drop-shadow(0 4px 6px rgba(245, 158, 11, 0.4));
+        }
+
+        .icon-math {
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+        }
+
+        .icon-web {
+            background: linear-gradient(135deg, #22d3ee, #06b6d4);
+        }
+
+        .icon-dsa {
+            background: linear-gradient(135deg, #34d399, #10b981);
+        }
+
+        .icon-ai {
+            background: linear-gradient(135deg, #f472b6, #ec4899);
+        }
+
+        .icon-security {
+            background: linear-gradient(135deg, #818cf8, #4f46e5);
+        }
+
+        .icon-cloud {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #111827;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #4b5563;
+            font-weight: 600;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .players-count {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: -5px;
+        }
+
+        .players-count i {
+            color: #3b82f6;
+        }
+
+        .start-btn {
+            border: none;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: fit-content;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+            gap: 12px;
+            filter: brightness(1.1);
+        }
+
+        .btn-prog {
+            background: rgba(139, 92, 246, 0.15);
+            color: #6b21a8;
+        }
+
+        .btn-net {
+            background: rgba(56, 189, 248, 0.25);
+            color: #0369a1;
+        }
+
+        .btn-db {
+            background: rgba(139, 92, 246, 0.15);
+            color: #6b21a8;
+        }
+
+        .btn-os {
+            background: rgba(56, 189, 248, 0.25);
+            color: #0369a1;
+        }
+
+        .btn-gk {
+            background: rgba(250, 204, 21, 0.2);
+            color: #b45309;
+        }
+
+        .btn-math {
+            background: rgba(139, 92, 246, 0.15);
+            color: #6b21a8;
+        }
+
+        .btn-web {
+            background: rgba(34, 211, 238, 0.25);
+            color: #0e7490;
+        }
+
+        .btn-lead {
+            background: rgba(236, 72, 153, 0.15);
+            color: #be185d;
+        }
+
+        .btn-dsa {
+            background: rgba(16, 185, 129, 0.15);
+            color: #047857;
+        }
+
+        .btn-ai {
+            background: rgba(236, 72, 153, 0.15);
+            color: #be185d;
+        }
+
+        .btn-security {
+            background: rgba(79, 70, 229, 0.15);
+            color: #4338ca;
+        }
+
+        .btn-cloud {
+            background: rgba(59, 130, 246, 0.15);
+            color: #1d4ed8;
+        }
+
+        footer {
+            margin: 40px auto 20px;
+            width: 90%;
+            max-width: 1300px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-brand-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo-img {
+            height: 95px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .footer-brand {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #10b981, #3b82f6);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGradient 5s linear infinite;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.5);
+            outline: none;
+            font-family: inherit;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .subscribe-form input::placeholder {
+            color: #6b7280;
+        }
+
+        .subscribe-form button {
+            padding: 12px 25px;
+            border-radius: 20px;
+            border: none;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .subscribe-form button:hover {
+            transform: scale(1.05);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-5px);
+            color: #3b82f6;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .footer-bottom {
+            font-weight: 700;
+            color: #6b7280;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            width: 100%;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .success-modal {
+            width: 100%;
+            max-width: 420px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(224, 242, 254, 0.6));
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            border-radius: 40px;
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15), inset 0 0 30px rgba(255, 255, 255, 0.8);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            transform: scale(0.8) translateY(20px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .popup-overlay.active .success-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 1);
+            color: #3b82f6;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .popup-close:hover {
+            background: #ef4444;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .envelope-graphic {
+            position: relative;
+            width: 120px;
+            height: 100px;
+            margin: 0 auto 25px;
+        }
+
+        .env-paper {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            width: 90px;
+            height: 80px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            border: 1px solid #e5e7eb;
+        }
+
+        .gmail-icon {
+            width: 50px;
+            height: 40px;
+        }
+
+        .env-back {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 70px;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            border-radius: 10px;
+            z-index: 1;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3), 0 10px 20px rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .env-front {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 70px;
+            z-index: 3;
+            background: linear-gradient(135deg, #93c5fd, #60a5fa);
+            clip-path: polygon(0 0, 50% 35%, 100% 0, 100% 100%, 0 100%);
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .splash {
+            position: absolute;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            border-radius: 50% 50% 50% 10%;
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.8);
+            z-index: 0;
+        }
+
+        .splash-1 {
+            width: 40px;
+            height: 15px;
+            top: 10px;
+            left: -15px;
+            transform: rotate(-30deg);
+        }
+
+        .splash-2 {
+            width: 30px;
+            height: 10px;
+            top: 20px;
+            right: -10px;
+            transform: rotate(30deg);
+        }
+
+        .splash-3 {
+            width: 20px;
+            height: 30px;
+            bottom: 30px;
+            left: -10px;
+            border-radius: 10% 50% 50% 50%;
+            transform: rotate(-15deg);
+        }
+
+        .splash-4 {
+            width: 25px;
+            height: 25px;
+            bottom: -10px;
+            right: -15px;
+            border-radius: 50%;
+        }
+
+        .success-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .success-desc {
+            color: #4b5563;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .subscribed-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #3b82f6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 10px;
+        }
+
+        .email-text {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #6b7280;
+            margin-bottom: 25px;
+            word-break: break-all;
+        }
+
+        .continue-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 25px;
+            border: none;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            font-size: 1rem;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3), inset 0 2px 5px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 500px;
+            padding: 35px;
+            text-align: center;
+            position: relative;
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid #fff;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            background: none;
+            border: none;
+            transition: transform 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+            color: #ec4899;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 700;
+            text-align: left;
+            transition: all 0.2s;
+            color: var(--text-dark);
+        }
+
+        .option-btn:hover {
+            border-color: #3b82f6;
+            background: #fff;
+        }
+
+        .option-btn.correct {
+            background: #d1fae5;
+            border-color: #10b981;
+            color: #047857;
+        }
+
+        .option-btn.wrong {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #b91c1c;
+        }
+
+        .lb-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .clear-all-btn {
+            background: rgba(239, 68, 68, 0.15);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .clear-all-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .lb-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 350px;
+            overflow-y: auto;
+            padding-right: 5px;
+            text-align: left;
+        }
+
+        .lb-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .lb-item:nth-child(1) {
+            background: linear-gradient(90deg, rgba(253, 224, 71, 0.3), rgba(255, 255, 255, 0.6));
+            border-color: #fde047;
+        }
+
+        .lb-item:nth-child(2) {
+            background: linear-gradient(90deg, rgba(203, 213, 225, 0.5), rgba(255, 255, 255, 0.6));
+            border-color: #cbd5e1;
+        }
+
+        .lb-item:nth-child(3) {
+            background: linear-gradient(90deg, rgba(217, 119, 6, 0.2), rgba(255, 255, 255, 0.6));
+            border-color: #f59e0b;
+        }
+
+        .lb-rank {
+            font-weight: 900;
+            font-size: 1.2rem;
+            width: 30px;
+            color: #6b7280;
+        }
+
+        .lb-item:nth-child(1) .lb-rank {
+            color: #d97706;
+        }
+
+        .lb-name {
+            font-weight: 800;
+            color: #111827;
+            flex: 1;
+        }
+
+        .lb-score {
+            font-weight: 900;
+            color: #3b82f6;
+        }
+
+        .lb-score-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lb-delete {
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            margin-left: 4px;
+        }
+
+        .lb-delete:hover {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .lb-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .lb-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .lb-list::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        .dashboard-content {
+            width: 100%;
+            max-width: 520px;
+            padding: 40px 35px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(224, 242, 254, 0.7));
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            border-radius: 35px;
+            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.15), inset 0 0 30px rgba(255, 255, 255, 0.8);
+            animation: dashIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes dashIn {
+            from {
+                transform: scale(0.8) translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .dash-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .dash-title {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dash-subtitle {
+            color: #6b7280;
+            font-weight: 700;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        .dash-stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            padding: 18px 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #1e1b4b;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dash-category {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(59, 130, 246, 0.12);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 15px;
+            font-weight: 800;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        .dash-progress-bar {
+            height: 14px;
+            background: rgba(0, 0, 0, 0.06);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .dash-progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            transition: width 1s ease;
+        }
+
+        .dash-message {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #4b5563;
+            margin-bottom: 25px;
+        }
+
+        .dash-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .dash-actions .start-btn {
+            width: 100%;
+            margin: 0;
+            justify-content: center;
+            padding: 14px;
+        }
+
+        @media (max-width: 1100px) {
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-brand-container {
+                justify-content: center;
+            }
+
+            header {
+                padding: 10px 25px;
+                width: 95%;
+                top: 10px;
+            }
+
+            .nav-logo-img {
+                height: 65px;
+            }
+
+            .logo-text {
+                font-size: 1.6rem;
+            }
+
+            main {
+                padding-top: 110px;
+            }
+
+            .footer-logo-img {
+                height: 75px;
+            }
+
+            .footer-brand {
+                font-size: 1.6rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-10px) rotate(-45deg);
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 110%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-radius: 25px;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 15px 35px rgba(31, 38, 135, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.8);
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-15px);
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+                border-radius: 15px;
+                font-size: 1.1rem;
+                transition: all 0.2s;
+            }
+
+            .nav-links a:hover {
+                background: rgba(59, 130, 246, 0.1);
+                color: #3b82f6;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            header {
+                padding: 8px 15px;
+                width: 92%;
+                top: 10px;
+            }
+
+            .logo-container {
+                gap: 8px;
+            }
+
+            .nav-logo-img {
+                height: 55px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+                gap: 5px;
+            }
+
+            main {
+                padding-top: 90px;
+            }
+
+            .menu-toggle {
+                width: 26px;
+                height: 20px;
+            }
+
+            .menu-toggle .bar {
+                height: 2.5px;
+            }
+
+            .menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(8.5px) rotate(45deg);
+            }
+
+            .menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            .footer-logo-img {
+                height: 60px;
+            }
+
+            .footer-brand {
+                font-size: 1.3rem;
+            }
+
+            .success-modal {
+                padding: 30px 20px;
+            }
+
+            .success-title {
+                font-size: 1.8rem;
+            }
+
+            .dashboard-content {
+                padding: 30px 20px;
+            }
+
+            .dash-title {
+                font-size: 1.6rem;
+            }
+
+            .stat-value {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+    <div class="bubble bubble-4"></div>
+    <div class="bubble bubble-5"></div>
+
+    <i class="fas fa-star sparkle" style="top: 15%; left: 25%; font-size: 1rem;"></i>
+    <i class="fas fa-star sparkle" style="top: 25%; right: 15%; animation-delay: 1s; font-size: 0.8rem;"></i>
+    <i class="fas fa-star sparkle" style="bottom: 25%; left: 10%; animation-delay: 2s; font-size: 1.2rem;"></i>
+    <i class="fas fa-star sparkle" style="bottom: 15%; right: 30%; animation-delay: 1.5s; font-size: 0.9rem;"></i>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="Quies Hub Logo" class="nav-logo-img">
+            <span class="logo-text">Quies Hub</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="index.html">Quizzes</a>
+            <a href="#" onclick="openLeaderboard(event)">Leaderboard</a>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>
+                <i class="fas fa-leaf leaf-icon" style="transform: rotate(-45deg) scaleX(-1);"></i>
+                <span class="title-explore">Explore</span>
+                <span class="title-categories">Categories</span>
+                <i class="fas fa-leaf leaf-icon" style="transform: rotate(45deg);"></i>
+            </h1>
+            <p>🚀 Every quiz is a new challenge. Are you ready to reach the top of the leaderboard?</p>
+        </div>
+
+        <div class="category-grid">
+            <div class="card programming">
+                <div class="card-top">
+                    <div class="icon-box icon-prog"><i class="fas fa-code"></i></div>
+                </div>
+                <div class="card-title">Programming</div>
+                <p class="card-desc">Test your coding skills and problem solving ability.</p>
+                <button class="start-btn btn-prog" onclick="startQuiz('Programming')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card networks">
+                <div class="card-top">
+                    <div class="icon-box icon-net"><i class="fas fa-globe"></i></div>
+                </div>
+                <div class="card-title">Computer Networks</div>
+                <p class="card-desc">Explore the world of networks, protocols and communication.</p>
+                <button class="start-btn btn-net" onclick="startQuiz('Computer Networks')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card dbms">
+                <div class="card-top">
+                    <div class="icon-box icon-db"><i class="fas fa-database"></i></div>
+                </div>
+                <div class="card-title">DBMS</div>
+                <p class="card-desc">Learn about databases, queries and data management.</p>
+                <button class="start-btn btn-db" onclick="startQuiz('DBMS')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card os">
+                <div class="card-top">
+                    <div class="icon-box icon-os"><i class="fas fa-cog"></i></div>
+                </div>
+                <div class="card-title">Operating Systems</div>
+                <p class="card-desc">Understand processes, memory, scheduling and more.</p>
+                <button class="start-btn btn-os" onclick="startQuiz('Operating Systems')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card gk">
+                <div class="card-top">
+                    <div class="icon-box icon-gk"><i class="fas fa-lightbulb"></i></div>
+                </div>
+                <div class="card-title">General Knowledge</div>
+                <p class="card-desc">Test your awareness about the world around you.</p>
+                <button class="start-btn btn-gk" onclick="startQuiz('General Knowledge')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card math">
+                <div class="card-top">
+                    <div class="icon-box icon-math"><i class="fas fa-calculator"></i></div>
+                </div>
+                <div class="card-title">Mathematics</div>
+                <p class="card-desc">Sharpen your logical and calculation skills.</p>
+                <button class="start-btn btn-math" onclick="startQuiz('Mathematics')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card web">
+                <div class="card-top">
+                    <div class="icon-box icon-web"><i class="fas fa-laptop-code"></i></div>
+                </div>
+                <div class="card-title">Web Development</div>
+                <p class="card-desc">Build your knowledge in modern web technologies.</p>
+                <button class="start-btn btn-web" onclick="startQuiz('Web Development')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card dsa">
+                <div class="card-top">
+                    <div class="icon-box icon-dsa"><i class="fas fa-sitemap"></i></div>
+                </div>
+                <div class="card-title">DSA</div>
+                <p class="card-desc">Master Data Structures, Algorithms and logic building.</p>
+                <button class="start-btn btn-dsa" onclick="startQuiz('DSA')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card ai">
+                <div class="card-top">
+                    <div class="icon-box icon-ai"><i class="fas fa-robot"></i></div>
+                </div>
+                <div class="card-title">Artificial Intelligence</div>
+                <p class="card-desc">Explore Machine Learning, Neural Networks and AI.</p>
+                <button class="start-btn btn-ai" onclick="startQuiz('AI')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card security">
+                <div class="card-top">
+                    <div class="icon-box icon-security"><i class="fas fa-shield-alt"></i></div>
+                </div>
+                <div class="card-title">Cyber Security</div>
+                <p class="card-desc">Learn ethical hacking, cryptography and network security.</p>
+                <button class="start-btn btn-security" onclick="startQuiz('Cyber Security')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card cloud">
+                <div class="card-top">
+                    <div class="icon-box icon-cloud"><i class="fas fa-cloud"></i></div>
+                </div>
+                <div class="card-title">Cloud Computing</div>
+                <p class="card-desc">Understand AWS, Azure, and cloud infrastructure.</p>
+                <button class="start-btn btn-cloud" onclick="startQuiz('Cloud Computing')">Start Quiz <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="card leaderboard">
+                <div class="card-top">
+                    <div class="icon-box icon-lead"><i class="fas fa-trophy"></i></div>
+                </div>
+                <div class="card-title">Leaderboard</div>
+                <div class="players-count" id="playerCountText"><i class="fas fa-user"></i> 0 players</div>
+                <p class="card-desc">See how you rank among other players.</p>
+                <button class="start-btn btn-lead" onclick="openLeaderboard()">View Ranking <i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand-container">
+                <img src="logo.png" alt="Quies Hub Logo" class="footer-logo-img">
+                <span class="footer-brand">Quies Hub</span>
+            </div>
+            <form class="subscribe-form" id="subscribeForm">
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <div class="social-links">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Quies Hub. All rights reserved. Made with <i class="fas fa-heart" style="color: #ec4899;"></i>
+            for learners.
+        </div>
+    </footer>
+
+    <div class="popup-overlay" id="successPopup">
+        <div class="success-modal">
+            <button class="popup-close" onclick="closePopup()"><i class="fas fa-times"></i></button>
+            <div class="envelope-graphic">
+                <div class="splash splash-1"></div>
+                <div class="splash splash-2"></div>
+                <div class="splash splash-3"></div>
+                <div class="splash splash-4"></div>
+                <div class="env-back"></div>
+                <div class="env-paper">
+                    <svg class="gmail-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#4285F4"
+                            d="M22.288 4.536L12 12.5 1.712 4.536C1.92 4.24 2.275 4 2.708 4h18.584c.433 0 .788.24.996.536z" />
+                        <path fill="#34A853"
+                            d="M1.712 4.536L12 12.5l10.288-7.964c.208.296.328.671.328 1.087V19c0 1.105-.895 2-2 2h-2V9.5l-7 5.417-7-5.417V21h-2c-1.105 0-2-.895-2-2V5.623c0-.416.12-.791.328-1.087z" />
+                        <path fill="#FBBC04" d="M17 21h2V9.5l-7 5.417V21h5z" />
+                        <path fill="#EA4335" d="M5 21H3V9.5l7 5.417V21H5z" />
+                    </svg>
+                </div>
+                <div class="env-front"></div>
+            </div>
+            <h2 class="success-title">You're All Set!</h2>
+            <p class="success-desc">Thanks for subscribing with your Gmail!<br>You'll now receive the latest
+                updates,<br>quizzes and more from Quies Hub.</p>
+            <div class="subscribed-badge"><svg width="16" height="12" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#4285F4"
+                        d="M22.288 4.536L12 12.5 1.712 4.536C1.92 4.24 2.275 4 2.708 4h18.584c.433 0 .788.24.996.536z" />
+                    <path fill="#34A853"
+                        d="M1.712 4.536L12 12.5l10.288-7.964c.208.296.328.671.328 1.087V19c0 1.105-.895 2-2 2h-2V9.5l-7 5.417-7-5.417V21h-2c-1.105 0-2-.895-2-2V5.623c0-.416.12-.791.328-1.087z" />
+                </svg> Subscribed successfully!</div>
+            <p class="email-text" id="popupEmailText">your.email@gmail.com</p>
+            <button class="continue-btn" onclick="closePopup()">Continue Exploring <i
+                    class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="leaderboardModal">
+        <div class="modal-content" style="max-width: 550px;">
+            <button class="close-btn" onclick="closeLeaderboard()"><i class="fas fa-times"></i></button>
+            <div class="lb-header">
+                <h2 style="color: #f59e0b; font-weight: 900; font-size: 2rem;"><i class="fas fa-trophy"></i> Top Players
+                </h2>
+                <button class="clear-all-btn" onclick="clearAllLeaderboard()"><i class="fas fa-trash-alt"></i> Clear
+                    All</button>
+            </div>
+            <div class="lb-list" id="leaderboardList"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="quizModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeQuiz()"><i class="fas fa-times"></i></button>
+            <h2 id="modalCategoryName" style="margin-bottom: 15px; color: #3b82f6; font-weight: 900;">Category Name</h2>
+            <div class="question-text" id="questionText">Question goes here...</div>
+            <div class="options-container" id="optionsContainer"></div>
+            <div class="quiz-progress" id="quizProgress" style="margin-top: 20px; font-weight: 800; color: #4b5563;">
+                Question 1 of 30</div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="dashboardModal">
+        <div class="dashboard-content">
+            <button class="close-btn" onclick="closeDashboard()"><i class="fas fa-times"></i></button>
+            <div class="dash-icon"><i class="fas fa-chart-line"></i></div>
+            <h2 class="dash-title">Quiz Dashboard</h2>
+            <p class="dash-subtitle" id="dashGreeting">Great job!</p>
+
+            <div class="dash-stats">
+                <div class="stat-box">
+                    <div class="stat-value" id="dashScore">0</div>
+                    <div class="stat-label">Score</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="dashTotal">0</div>
+                    <div class="stat-label">Total</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="dashPercent">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+            </div>
+
+            <div class="dash-category" id="dashCategory"><i class="fas fa-bookmark"></i> Category</div>
+
+            <div class="dash-progress-bar">
+                <div class="dash-progress-fill" id="dashProgressFill"></div>
+            </div>
+
+            <div class="dash-message" id="dashMessage"></div>
+
+            <div class="dash-actions">
+                <button class="start-btn" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white;"
+                    onclick="closeDashboard(); openLeaderboard();">View Leaderboard <i
+                        class="fas fa-trophy"></i></button>
+                <button class="start-btn" style="background: transparent; color: #3b82f6; border: 2px solid #3b82f6;"
+                    onclick="closeDashboard()">Back to Hub <i class="fas fa-home"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function (event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            const isClickInside = navLinks.contains(event.target) || menuToggle.contains(event.target);
+
+            if (!isClickInside && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        const subscribeForm = document.getElementById('subscribeForm');
+        const emailInput = document.getElementById('emailInput');
+        const successPopup = document.getElementById('successPopup');
+        const popupEmailText = document.getElementById('popupEmailText');
+
+        subscribeForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            popupEmailText.innerText = emailInput.value;
+            successPopup.classList.add('active');
+            emailInput.value = '';
+        });
+
+        function closePopup() { successPopup.classList.remove('active'); }
+        successPopup.addEventListener('click', function (e) { if (e.target === successPopup) closePopup(); });
+
+        let leaderboardData = JSON.parse(localStorage.getItem('quiesLeaderboard')) || [];
+
+        leaderboardData = leaderboardData.map((p, i) => {
+            if (!p.id) p.id = Date.now() + '-' + i + '-' + Math.random().toString(36).substr(2, 9);
+            return p;
+        });
+        localStorage.setItem('quiesLeaderboard', JSON.stringify(leaderboardData));
+
+        function updateLeaderboardUI() {
+            const listContainer = document.getElementById('leaderboardList');
+            const playerCountText = document.getElementById('playerCountText');
+
+            playerCountText.innerHTML = `<i class="fas fa-user"></i> ${leaderboardData.length} players`;
+
+            if (leaderboardData.length === 0) {
+                listContainer.innerHTML = `<p style="text-align: center; color: #6b7280; font-weight: 700; padding: 20px;">No players yet. Be the first to play!</p>`;
+                return;
+            }
+
+            leaderboardData.sort((a, b) => b.score - a.score);
+
+            listContainer.innerHTML = '';
+            leaderboardData.forEach((player, index) => {
+                let medal = '';
+                if (index === 0) medal = '🥇';
+                else if (index === 1) medal = '🥈';
+                else if (index === 2) medal = '🥉';
+                else medal = `#${index + 1}`;
+
+                const item = document.createElement('div');
+                item.className = 'lb-item';
+                item.innerHTML = `
+                    <div class="lb-rank">${medal}</div>
+                    <div class="lb-name">${player.name} <br><span style="font-size: 0.75rem; color: #6b7280;">${player.category}</span></div>
+                    <div class="lb-score-wrap">
+                        <div class="lb-score">${player.score}</div>
+                        <button class="lb-delete" onclick="deletePlayer('${player.id}')" title="Delete this entry"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        function deletePlayer(id) {
+            if (!confirm('Delete this player from the leaderboard?')) return;
+            leaderboardData = leaderboardData.filter(p => p.id !== id);
+            localStorage.setItem('quiesLeaderboard', JSON.stringify(leaderboardData));
+            updateLeaderboardUI();
+        }
+
+        function clearAllLeaderboard() {
+            if (leaderboardData.length === 0) return;
+            if (!confirm('Are you sure you want to clear the entire leaderboard? This cannot be undone.')) return;
+            leaderboardData = [];
+            localStorage.setItem('quiesLeaderboard', JSON.stringify(leaderboardData));
+            updateLeaderboardUI();
+        }
+
+        function openLeaderboard(e) {
+            if (e) e.preventDefault();
+            updateLeaderboardUI();
+            document.getElementById('leaderboardModal').classList.add('active');
+            document.getElementById('navLinks').classList.remove('active');
+            document.getElementById('menuToggle').classList.remove('active');
+        }
+
+        function closeLeaderboard() {
+            document.getElementById('leaderboardModal').classList.remove('active');
+        }
+
+        updateLeaderboardUI();
+
+        const quizData = {
+            'Programming': [
+                { q: "What does HTML stand for?", options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Tabular Markup Language", "None"], ans: 0 },
+                { q: "Which language is primarily used for Data Science?", options: ["Java", "C++", "Python", "Ruby"], ans: 2 },
+                { q: "Which of the following is NOT a programming language?", options: ["Python", "Java", "HTML", "C++"], ans: 2 },
+                { q: "What is the purpose of a compiler?", options: ["To execute code", "To translate high-level code to machine code", "To debug code", "To format code"], ans: 1 },
+                { q: "What does OOP stand for?", options: ["Object Oriented Programming", "Open Oriented Programming", "Objective Oriented Programming", "None"], ans: 0 },
+                { q: "Which keyword is used to define a function in Python?", options: ["func", "def", "function", "define"], ans: 1 },
+                { q: "What is an array?", options: ["A collection of different data types", "A collection of same data types", "A single variable", "A loop"], ans: 1 },
+                { q: "What does IDE stand for?", options: ["Integrated Development Environment", "Internal Data Engine", "Integrated Data Editor", "Interface Development Engine"], ans: 0 },
+                { q: "Which of these is a frontend framework?", options: ["Django", "React", "Laravel", "Spring"], ans: 1 },
+                { q: "What is the binary representation of 5?", options: ["101", "100", "110", "111"], ans: 0 },
+                { q: "What does API stand for?", options: ["Application Programming Interface", "Applied Protocol Integration", "Advanced Program Interaction", "None"], ans: 0 },
+                { q: "Which data type stores true/false values?", options: ["int", "String", "Boolean", "Float"], ans: 2 },
+                { q: "What is an infinite loop?", options: ["A loop that runs once", "A loop that never ends", "A loop that runs 10 times", "A syntax error"], ans: 1 },
+                { q: "What is the time complexity of accessing an array element by index?", options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"], ans: 0 },
+                { q: "Which of these is a version control system?", options: ["Git", "Docker", "Jenkins", "Kubernetes"], ans: 0 },
+                { q: "What is a variable?", options: ["A container for storing data", "A function", "A loop", "A class"], ans: 0 },
+                { q: "What does 'frontend' refer to?", options: ["Server-side code", "Client-side code", "Database", "Network"], ans: 1 },
+                { q: "Which language is used for styling web pages?", options: ["HTML", "JavaScript", "CSS", "Python"], ans: 2 },
+                { q: "What is a function?", options: ["A reusable block of code", "A variable", "A loop", "A data type"], ans: 0 },
+                { q: "What is a bug in programming?", options: ["An error in code", "A feature", "A type of loop", "A variable"], ans: 0 },
+                { q: "What is the purpose of a loop?", options: ["To repeat code", "To store data", "To define a function", "To style elements"], ans: 0 },
+                { q: "What is a boolean?", options: ["A data type with true/false", "A number", "A string", "An array"], ans: 0 },
+                { q: "Which of these is a backend language?", options: ["HTML", "CSS", "JavaScript", "PHP"], ans: 3 },
+                { q: "What is a class in OOP?", options: ["A blueprint for objects", "A function", "A variable", "A loop"], ans: 0 },
+                { q: "What is inheritance?", options: ["Acquiring properties from a parent class", "Creating a new class", "Deleting a class", "Modifying a class"], ans: 0 },
+                { q: "What is a pointer?", options: ["A variable that stores a memory address", "A function", "A loop", "A data type"], ans: 0 },
+                { q: "What is a stack overflow?", options: ["When the call stack exceeds its limit", "When the heap is full", "When a variable is undefined", "When a loop runs forever"], ans: 0 },
+                { q: "What is a database?", options: ["A structured collection of data", "A programming language", "A web server", "A text file"], ans: 0 },
+                { q: "What is a framework?", options: ["A pre-built set of tools and libraries", "A programming language", "A data structure", "A network protocol"], ans: 0 },
+                { q: "What is a CLI?", options: ["Command Line Interface", "Common Language Interface", "Computer Logic Interface", "Central Loop Interface"], ans: 0 }
+            ],
+            'Computer Networks': [
+                { q: "What does IP stand for?", options: ["Internet Protocol", "Internal Process", "Internet Provider", "Input Protocol"], ans: 0 },
+                { q: "Which layer is responsible for routing?", options: ["Data Link", "Network", "Transport", "Session"], ans: 1 },
+                { q: "What is the default port for HTTP?", options: ["21", "80", "443", "8080"], ans: 1 },
+                { q: "Which device connects different networks?", options: ["Hub", "Switch", "Router", "Repeater"], ans: 2 },
+                { q: "What does DNS stand for?", options: ["Domain Name System", "Data Network System", "Digital Name Server", "Dynamic Node System"], ans: 0 },
+                { q: "What is a MAC address?", options: ["Physical address of a NIC", "Logical address of a router", "IP address", "Subnet mask"], ans: 0 },
+                { q: "Which protocol is connection-oriented?", options: ["UDP", "TCP", "IP", "ICMP"], ans: 1 },
+                { q: "What does LAN stand for?", options: ["Local Area Network", "Long Area Network", "Logical Area Network", "Link Area Network"], ans: 0 },
+                { q: "What does HTTPS use for encryption?", options: ["SSL/TLS", "FTP", "SSH", "SMTP"], ans: 0 },
+                { q: "What is the purpose of a subnet mask?", options: ["Identify network and host portions", "Encrypt data", "Route packets", "Assign IP addresses"], ans: 0 },
+                { q: "Which topology connects all devices to a single cable?", options: ["Star", "Bus", "Ring", "Mesh"], ans: 1 },
+                { q: "What is a ping used for?", options: ["Testing connectivity", "Sending emails", "Downloading files", "Routing"], ans: 0 },
+                { q: "What is the maximum speed of Cat6 cable?", options: ["100 Mbps", "1 Gbps", "10 Gbps", "100 Gbps"], ans: 2 },
+                { q: "What does VPN stand for?", options: ["Virtual Private Network", "Virtual Public Network", "Verified Personal Network", "None"], ans: 0 },
+                { q: "Which port does SSH use by default?", options: ["22", "23", "80", "443"], ans: 0 },
+                { q: "What is an IP address?", options: ["A unique identifier for a device on a network", "A physical address", "A domain name", "A subnet mask"], ans: 0 },
+                { q: "What does DHCP do?", options: ["Assigns IP addresses automatically", "Encrypts data", "Routes packets", "Resolves domain names"], ans: 0 },
+                { q: "What is a protocol?", options: ["A set of rules for communication", "A hardware device", "A software application", "A network topology"], ans: 0 },
+                { q: "What is the OSI model?", options: ["A reference model for network communication", "A routing protocol", "A type of cable", "A security standard"], ans: 0 },
+                { q: "What does UDP stand for?", options: ["User Datagram Protocol", "Universal Data Protocol", "Unified Datagram Protocol", "User Data Protocol"], ans: 0 },
+                { q: "What is a firewall?", options: ["A security device that filters network traffic", "A router", "A switch", "A modem"], ans: 0 },
+                { q: "What is latency?", options: ["Delay in data transmission", "Speed of data transfer", "Bandwidth", "Packet loss"], ans: 0 },
+                { q: "What is bandwidth?", options: ["Maximum data transfer rate", "Delay in transmission", "Number of users", "Signal strength"], ans: 0 },
+                { q: "What is a WAN?", options: ["Wide Area Network", "Wireless Area Network", "Wired Area Network", "Web Area Network"], ans: 0 },
+                { q: "What is the purpose of a router?", options: ["Forward data between networks", "Connect devices within a LAN", "Amplify signals", "Convert digital to analog"], ans: 0 },
+                { q: "What is a MAC address used for?", options: ["Identifying a device on a local network", "Routing over the internet", "Assigning IP addresses", "Encrypting data"], ans: 0 },
+                { q: "What is a DNS server?", options: ["Resolves domain names to IP addresses", "Assigns IP addresses", "Routes packets", "Filters traffic"], ans: 0 },
+                { q: "What is a proxy server?", options: ["An intermediary between client and server", "A database server", "A mail server", "A file server"], ans: 0 },
+                { q: "What is a network switch?", options: ["Connects devices within a LAN", "Connects different networks", "Routes packets between networks", "Modulates signals"], ans: 0 },
+                { q: "What is the TCP/IP model?", options: ["A framework for network communication", "A routing protocol", "A security protocol", "A type of cable"], ans: 0 }
+            ],
+            'DBMS': [
+                { q: "What does SQL stand for?", options: ["Structured Query Language", "Simple Query Language", "Standard Query Language", "None"], ans: 0 },
+                { q: "Which key uniquely identifies a record?", options: ["Foreign Key", "Primary Key", "Candidate Key", "Super Key"], ans: 1 },
+                { q: "What is normalization?", options: ["Adding redundancy", "Removing redundancy", "Encrypting data", "Backing up data"], ans: 1 },
+                { q: "Which of these is a NoSQL database?", options: ["MySQL", "Oracle", "MongoDB", "PostgreSQL"], ans: 2 },
+                { q: "What is an ACID property?", options: ["Atomicity, Consistency, Isolation, Durability", "Atomic, Consistent, Integrated, Durable", "Access, Control, Isolation, Data", "None"], ans: 0 },
+                { q: "Which command is used to retrieve data?", options: ["GET", "SELECT", "FETCH", "RETRIEVE"], ans: 1 },
+                { q: "What is a foreign key?", options: ["A key from another table", "A key from the same table", "A primary key", "A unique key"], ans: 0 },
+                { q: "What is a JOIN used for?", options: ["Combining rows from two tables", "Deleting rows", "Updating rows", "Creating tables"], ans: 0 },
+                { q: "Which SQL clause is used to filter rows?", options: ["GROUP BY", "ORDER BY", "WHERE", "HAVING"], ans: 2 },
+                { q: "What is a DBMS?", options: ["Database Management System", "Data Basic Management System", "Database Modern System", "None"], ans: 0 },
+                { q: "What does DDL stand for?", options: ["Data Definition Language", "Data Description Language", "Data Deletion Language", "None"], ans: 0 },
+                { q: "What does DML stand for?", options: ["Data Manipulation Language", "Data Management Language", "Data Modification Language", "None"], ans: 0 },
+                { q: "What is a transaction?", options: ["A single logical unit of work", "A physical file", "A network request", "A table"], ans: 0 },
+                { q: "Which normal form removes partial dependencies?", options: ["1NF", "2NF", "3NF", "BCNF"], ans: 1 },
+                { q: "What is an index used for?", options: ["Faster data retrieval", "Slower data retrieval", "Data encryption", "Data backup"], ans: 0 },
+                { q: "What is a relational database?", options: ["A database that stores data in tables with relationships", "A key-value store", "A document database", "A graph database"], ans: 0 },
+                { q: "What is SQL used for?", options: ["Managing relational databases", "Building websites", "Creating graphics", "Writing documents"], ans: 0 },
+                { q: "What is a table in a database?", options: ["A collection of rows and columns", "A single row", "A single column", "A relationship"], ans: 0 },
+                { q: "What is a view?", options: ["A virtual table based on a query", "A physical table", "An index", "A trigger"], ans: 0 },
+                { q: "What is a trigger?", options: ["A procedure that automatically executes on an event", "A query", "A table", "A view"], ans: 0 },
+                { q: "What is a stored procedure?", options: ["A set of SQL statements saved for reuse", "A table", "A view", "An index"], ans: 0 },
+                { q: "What is a primary key constraint?", options: ["Ensures uniqueness and non-null", "Allows duplicates", "Allows nulls", "Links to another table"], ans: 0 },
+                { q: "What is a foreign key constraint?", options: ["Ensures referential integrity", "Ensures uniqueness", "Allows nulls", "Creates an index"], ans: 0 },
+                { q: "What is a composite key?", options: ["A key made of multiple columns", "A single column key", "A foreign key", "A unique key"], ans: 0 },
+                { q: "What is a candidate key?", options: ["A column that can uniquely identify a row", "A foreign key", "A composite key", "An index"], ans: 0 },
+                { q: "What is a schema?", options: ["The structure of a database", "The data itself", "A query", "A transaction"], ans: 0 },
+                { q: "What is a query?", options: ["A request for data from a database", "A table", "A view", "A procedure"], ans: 0 },
+                { q: "What is a result set?", options: ["The data returned by a query", "A table", "An index", "A view"], ans: 0 },
+                { q: "What is a cursor?", options: ["A mechanism to traverse query results", "A pointer", "A table", "A view"], ans: 0 },
+                { q: "What is a deadlock in DBMS?", options: ["Two transactions waiting for each other", "A locked table", "A failed query", "A corrupted index"], ans: 0 }
+            ],
+            'Operating Systems': [
+                { q: "What is a deadlock?", options: ["A process finishing early", "A set of processes blocked forever", "Memory leak", "CPU overload"], ans: 1 },
+                { q: "Which scheduling algorithm is non-preemptive?", options: ["Round Robin", "SRTF", "FCFS", "Priority Preemptive"], ans: 2 },
+                { q: "What is virtual memory?", options: ["RAM", "ROM", "Disk space used as RAM", "Cache memory"], ans: 2 },
+                { q: "What is a thread?", options: ["A heavy process", "A lightweight process", "A hardware component", "A file"], ans: 1 },
+                { q: "What does OS stand for?", options: ["Operating System", "Open System", "Output System", "Order System"], ans: 0 },
+                { q: "What is thrashing?", options: ["High CPU usage", "High disk I/O due to excessive paging", "High RAM usage", "Network lag"], ans: 1 },
+                { q: "What is a context switch?", options: ["Saving state of a process", "Switching users", "Booting the OS", "Closing a file"], ans: 0 },
+                { q: "What is a semaphore used for?", options: ["Process synchronization", "Memory allocation", "File management", "Networking"], ans: 0 },
+                { q: "What is paging?", options: ["Dividing memory into fixed-size pages", "Dividing memory into variable chunks", "Swapping processes", "None"], ans: 0 },
+                { q: "What is the kernel?", options: ["Core of the OS", "A user application", "A hardware component", "A file system"], ans: 0 },
+                { q: "What is a shell?", options: ["Command line interface", "Kernel", "Hardware", "None"], ans: 0 },
+                { q: "Which of these is a mobile OS?", options: ["Windows", "macOS", "Android", "Linux"], ans: 2 },
+                { q: "What is starvation?", options: ["A process waiting indefinitely", "A process finishing early", "CPU crash", "Memory leak"], ans: 0 },
+                { q: "What is a file system?", options: ["Organizes and stores files", "Manages processes", "Routes packets", "None"], ans: 0 },
+                { q: "What is booting?", options: ["Starting the computer", "Shutting down", "Restarting", "Sleeping"], ans: 0 },
+                { q: "What is a process?", options: ["A program in execution", "A file", "A thread", "A device"], ans: 0 },
+                { q: "What is a PCB?", options: ["Process Control Block", "Program Control Block", "Process Communication Block", "Program Communication Block"], ans: 0 },
+                { q: "What is a scheduler?", options: ["Decides which process runs next", "Allocates memory", "Manages files", "Handles I/O"], ans: 0 },
+                { q: "What is a system call?", options: ["A request to the OS for a service", "A function call", "A hardware interrupt", "A network request"], ans: 0 },
+                { q: "What is a mutex?", options: ["A locking mechanism for mutual exclusion", "A semaphore", "A process", "A thread"], ans: 0 },
+                { q: "What is a race condition?", options: ["When processes access shared data concurrently and outcome depends on timing", "When a process runs too fast", "When a process runs too slow", "When a process crashes"], ans: 0 },
+                { q: "What is a page fault?", options: ["When a page is not in memory", "When a page is corrupted", "When a page is full", "When a page is empty"], ans: 0 },
+                { q: "What is LRU?", options: ["Least Recently Used page replacement", "Last Recently Used", "Lowest Resource Usage", "Large Resource Unit"], ans: 0 },
+                { q: "What is a monolithic kernel?", options: ["A large kernel with all services", "A small kernel", "A microkernel", "A hybrid kernel"], ans: 0 },
+                { q: "What is a microkernel?", options: ["A minimal kernel with services in user space", "A large kernel", "A monolithic kernel", "A hybrid kernel"], ans: 0 },
+                { q: "What is a device driver?", options: ["Software that controls hardware", "A hardware component", "An OS kernel", "A file system"], ans: 0 },
+                { q: "What is a CLI?", options: ["Command Line Interface", "Common Language Interface", "Computer Logic Interface", "Central Loop Interface"], ans: 0 },
+                { q: "What is GUI?", options: ["Graphical User Interface", "General User Interface", "Graphic Utility Interface", "Global User Interface"], ans: 0 },
+                { q: "What is a real-time OS?", options: ["An OS with strict timing constraints", "A fast OS", "A general-purpose OS", "A mobile OS"], ans: 0 },
+                { q: "What is a distributed OS?", options: ["An OS that manages multiple computers as one", "A single-computer OS", "A mobile OS", "A real-time OS"], ans: 0 }
+            ],
+            'General Knowledge': [
+                { q: "What is the capital of India?", options: ["Mumbai", "New Delhi", "Kolkata", "Chennai"], ans: 1 },
+                { q: "Who wrote the national anthem of India?", options: ["Rabindranath Tagore", "Bankim Chandra", "Mahatma Gandhi", "Jawaharlal Nehru"], ans: 0 },
+                { q: "Which is the largest ocean on Earth?", options: ["Atlantic", "Indian", "Arctic", "Pacific"], ans: 3 },
+                { q: "Who is known as the Father of the Nation in India?", options: ["Jawaharlal Nehru", "Mahatma Gandhi", "Subhash Chandra Bose", "Bhagat Singh"], ans: 1 },
+                { q: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], ans: 1 },
+                { q: "What is the currency of Japan?", options: ["Yuan", "Won", "Yen", "Ringgit"], ans: 2 },
+                { q: "How many continents are there?", options: ["5", "6", "7", "8"], ans: 2 },
+                { q: "Which is the longest river in the world?", options: ["Amazon", "Nile", "Ganga", "Yangtze"], ans: 1 },
+                { q: "Who invented the light bulb?", options: ["Thomas Edison", "Nikola Tesla", "Alexander Graham Bell", "Albert Einstein"], ans: 0 },
+                { q: "What is the largest mammal?", options: ["Elephant", "Blue Whale", "Giraffe", "Hippo"], ans: 1 },
+                { q: "Which country won the 2011 Cricket World Cup?", options: ["Australia", "India", "Sri Lanka", "England"], ans: 1 },
+                { q: "What is the chemical symbol for gold?", options: ["Au", "Ag", "Gd", "Fe"], ans: 0 },
+                { q: "Which is the smallest country in the world?", options: ["Monaco", "Vatican City", "Nauru", "Maldives"], ans: 1 },
+                { q: "Who painted the Mona Lisa?", options: ["Van Gogh", "Picasso", "Leonardo da Vinci", "Michelangelo"], ans: 2 },
+                { q: "What is the hardest natural substance?", options: ["Gold", "Iron", "Diamond", "Platinum"], ans: 2 },
+                { q: "What is the capital of France?", options: ["London", "Paris", "Berlin", "Madrid"], ans: 1 },
+                { q: "Who is the author of 'Harry Potter'?", options: ["J.R.R. Tolkien", "J.K. Rowling", "George R.R. Martin", "Stephen King"], ans: 1 },
+                { q: "Which is the largest desert in the world?", options: ["Sahara", "Antarctic", "Arabian", "Gobi"], ans: 1 },
+                { q: "What is the smallest prime number?", options: ["1", "2", "3", "5"], ans: 1 },
+                { q: "Which gas do plants absorb from the atmosphere?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], ans: 1 },
+                { q: "Who invented the telephone?", options: ["Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "Guglielmo Marconi"], ans: 1 },
+                { q: "What is the capital of Australia?", options: ["Sydney", "Melbourne", "Canberra", "Perth"], ans: 2 },
+                { q: "Which planet is closest to the Sun?", options: ["Venus", "Mercury", "Earth", "Mars"], ans: 1 },
+                { q: "What is the largest bird in the world?", options: ["Eagle", "Ostrich", "Emu", "Albatross"], ans: 1 },
+                { q: "Who discovered penicillin?", options: ["Alexander Fleming", "Louis Pasteur", "Marie Curie", "Joseph Lister"], ans: 0 },
+                { q: "What is the chemical symbol for water?", options: ["H2O", "CO2", "O2", "NaCl"], ans: 0 },
+                { q: "Which country is known as the Land of the Rising Sun?", options: ["China", "Japan", "South Korea", "Thailand"], ans: 1 },
+                { q: "What is the tallest mountain in the world?", options: ["K2", "Mount Everest", "Kangchenjunga", "Lhotse"], ans: 1 },
+                { q: "How many players are there in a football team?", options: ["9", "10", "11", "12"], ans: 2 },
+                { q: "What is the fastest land animal?", options: ["Lion", "Cheetah", "Leopard", "Tiger"], ans: 1 }
+            ],
+            'Mathematics': [
+                { q: "What is the value of Pi (approx)?", options: ["3.14", "2.14", "4.14", "3.41"], ans: 0 },
+                { q: "What is the derivative of x^2?", options: ["x", "2x", "x^3", "2"], ans: 1 },
+                { q: "What is the square root of 144?", options: ["10", "11", "12", "13"], ans: 2 },
+                { q: "What is 15% of 200?", options: ["20", "30", "40", "50"], ans: 1 },
+                { q: "What is the integral of 1/x?", options: ["x^2/2", "ln|x|", "e^x", "1"], ans: 1 },
+                { q: "Sum of angles in a triangle?", options: ["90", "180", "270", "360"], ans: 1 },
+                { q: "What is 7 * 8?", options: ["54", "56", "58", "60"], ans: 1 },
+                { q: "What is the value of 5 factorial (5!)?", options: ["25", "60", "120", "100"], ans: 2 },
+                { q: "Solve for x: 2x + 5 = 15", options: ["5", "10", "15", "20"], ans: 0 },
+                { q: "What is the area of a circle with radius 3?", options: ["6π", "9π", "3π", "12π"], ans: 1 },
+                { q: "What is the LCM of 4 and 6?", options: ["10", "12", "16", "24"], ans: 1 },
+                { q: "What is the HCF of 12 and 18?", options: ["2", "3", "6", "9"], ans: 2 },
+                { q: "What is the sine of 90 degrees?", options: ["0", "0.5", "1", "-1"], ans: 2 },
+                { q: "If a coin is tossed, what is the probability of getting heads?", options: ["0", "0.5", "1", "0.25"], ans: 1 },
+                { q: "What is the next prime number after 7?", options: ["8", "9", "10", "11"], ans: 3 },
+                { q: "What is the square of 9?", options: ["18", "81", "72", "90"], ans: 1 },
+                { q: "What is the value of 2^5?", options: ["10", "16", "32", "64"], ans: 2 },
+                { q: "What is the derivative of sin(x)?", options: ["cos(x)", "-cos(x)", "sin(x)", "-sin(x)"], ans: 0 },
+                { q: "What is the integral of cos(x)?", options: ["sin(x)", "-sin(x)", "cos(x)", "-cos(x)"], ans: 0 },
+                { q: "What is the value of e (approx)?", options: ["2.71", "3.14", "1.61", "1.41"], ans: 0 },
+                { q: "What is the area of a rectangle with length 5 and width 3?", options: ["8", "15", "16", "30"], ans: 1 },
+                { q: "What is the perimeter of a square with side 4?", options: ["8", "12", "16", "20"], ans: 2 },
+                { q: "What is the volume of a cube with side 2?", options: ["4", "6", "8", "10"], ans: 2 },
+                { q: "What is the slope of the line y = 2x + 3?", options: ["2", "3", "5", "1"], ans: 0 },
+                { q: "What is the value of log10(100)?", options: ["1", "2", "10", "100"], ans: 1 },
+                { q: "What is the value of ln(e)?", options: ["0", "1", "e", "10"], ans: 1 },
+                { q: "What is the sum of the first 10 natural numbers?", options: ["45", "50", "55", "60"], ans: 2 },
+                { q: "What is the value of 0! (zero factorial)?", options: ["0", "1", "undefined", "10"], ans: 1 },
+                { q: "What is the quadratic formula?", options: ["x = (-b ± √(b²-4ac)) / 2a", "x = (-b ± √(b²+4ac)) / 2a", "x = (b ± √(b²-4ac)) / 2a", "x = (-b ± √(b²-4ac)) / a"], ans: 0 },
+                { q: "What is the Pythagorean theorem?", options: ["a² + b² = c²", "a + b = c", "a² - b² = c²", "a × b = c"], ans: 0 }
+            ],
+            'Web Development': [
+                { q: "What does CSS stand for?", options: ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"], ans: 0 },
+                { q: "Which library is used for UI in React?", options: ["Redux", "React Router", "Material UI", "Axios"], ans: 2 },
+                { q: "What is the purpose of JavaScript in web dev?", options: ["Styling", "Structure", "Interactivity", "Database"], ans: 2 },
+                { q: "Which HTML tag is used for the largest heading?", options: ["<h6>", "<head>", "<h1>", "<header>"], ans: 2 },
+                { q: "What is DOM?", options: ["Document Object Model", "Data Object Model", "Digital Object Model", "Display Object Model"], ans: 0 },
+                { q: "Which HTTP method is used to send data?", options: ["GET", "POST", "PUT", "DELETE"], ans: 1 },
+                { q: "What does API stand for?", options: ["Application Programming Interface", "Applied Program Interaction", "Advanced Protocol Interface", "None"], ans: 0 },
+                { q: "Which of these is a backend framework?", options: ["React", "Vue", "Angular", "Node.js"], ans: 3 },
+                { q: "What is the use of the alt attribute in an image tag?", options: ["Alternative text if image fails to load", "Alternate image", "Image alignment", "Image size"], ans: 0 },
+                { q: "Which CSS property is used for text color?", options: ["text-color", "font-color", "color", "text-style"], ans: 2 },
+                { q: "What is a responsive web design?", options: ["Adapts to screen size", "Loads fast", "Has animations", "Uses dark mode"], ans: 0 },
+                { q: "What does HTTP stand for?", options: ["HyperText Transfer Protocol", "HyperText Transmission Protocol", "High Transfer Text Protocol", "None"], ans: 0 },
+                { q: "What is the purpose of Git in web dev?", options: ["Version control", "Styling", "Hosting", "Database"], ans: 0 },
+                { q: "Which tag is used to create a line break in HTML?", options: ["<lb>", "<break>", "<br>", "<hr>"], ans: 2 },
+                { q: "What is JSON?", options: ["A data format", "A programming language", "A database", "A CSS framework"], ans: 0 },
+                { q: "What is React?", options: ["A JavaScript library for building UIs", "A CSS framework", "A backend language", "A database"], ans: 0 },
+                { q: "What is a component in React?", options: ["A reusable piece of UI", "A function", "A class", "A file"], ans: 0 },
+                { q: "What is JSX?", options: ["A syntax extension for JavaScript", "A new language", "A CSS preprocessor", "A database"], ans: 0 },
+                { q: "What is state in React?", options: ["Data that can change over time", "A constant", "A function", "A prop"], ans: 0 },
+                { q: "What are props in React?", options: ["Data passed from parent to child", "State", "Functions", "Styles"], ans: 0 },
+                { q: "What is a hook in React?", options: ["A function to use state and lifecycle", "A component", "A CSS class", "A backend service"], ans: 0 },
+                { q: "What is the virtual DOM?", options: ["An in-memory representation of the real DOM", "A new browser feature", "A CSS framework", "A database"], ans: 0 },
+                { q: "What is CSS Flexbox used for?", options: ["Layout", "Styling text", "Adding animations", "Handling events"], ans: 0 },
+                { q: "What is CSS Grid?", options: ["A layout system", "A styling property", "A JavaScript library", "A database"], ans: 0 },
+                { q: "What is a media query?", options: ["CSS technique for responsive design", "A JavaScript function", "An HTML tag", "A server request"], ans: 0 },
+                { q: "What is the box model in CSS?", options: ["Content, padding, border, margin", "Width, height, color", "Display, position, float", "Font, text, background"], ans: 0 },
+                { q: "What is a CSS preprocessor?", options: ["A tool that extends CSS", "A browser", "A JavaScript framework", "A server"], ans: 0 },
+                { q: "What is SASS?", options: ["A CSS preprocessor", "A JavaScript library", "A backend framework", "A database"], ans: 0 },
+                { q: "What is a REST API?", options: ["An architectural style for APIs", "A database", "A frontend framework", "A CSS library"], ans: 0 },
+                { q: "What is a single-page application (SPA)?", options: ["A web app that loads a single HTML page", "A website with one page", "A static site", "A backend service"], ans: 0 }
+            ],
+            'DSA': [
+                { q: "Which data structure uses LIFO?", options: ["Queue", "Stack", "Array", "Linked List"], ans: 1 },
+                { q: "What is the time complexity of binary search?", options: ["O(n)", "O(n log n)", "O(log n)", "O(1)"], ans: 2 },
+                { q: "Which sorting algorithm is fastest on average?", options: ["Bubble Sort", "Selection Sort", "Quick Sort", "Insertion Sort"], ans: 2 },
+                { q: "What is a tree in DSA?", options: ["A linear structure", "A hierarchical structure", "A cyclic structure", "None"], ans: 1 },
+                { q: "What is the worst-case time complexity of Quick Sort?", options: ["O(n log n)", "O(n^2)", "O(n)", "O(log n)"], ans: 1 },
+                { q: "Which data structure uses FIFO?", options: ["Stack", "Queue", "Tree", "Graph"], ans: 1 },
+                { q: "What is a Linked List?", options: ["A linear data structure with nodes", "A tree", "A graph", "An array"], ans: 0 },
+                { q: "What is the time complexity of accessing an array by index?", options: ["O(n)", "O(log n)", "O(1)", "O(n^2)"], ans: 2 },
+                { q: "Which algorithm finds the shortest path?", options: ["Dijkstra's", "Merge Sort", "Binary Search", "Bubble Sort"], ans: 0 },
+                { q: "What is a hash table?", options: ["Key-value data structure", "A tree", "A graph", "An array"], ans: 0 },
+                { q: "What is recursion?", options: ["A function calling itself", "A loop", "An array", "A pointer"], ans: 0 },
+                { q: "What is Big O notation used for?", options: ["Measuring time/space complexity", "Sorting", "Searching", "Hashing"], ans: 0 },
+                { q: "Which data structure is used in BFS?", options: ["Stack", "Queue", "Array", "Tree"], ans: 1 },
+                { q: "Which data structure is used in DFS?", options: ["Stack", "Queue", "Array", "Graph"], ans: 0 },
+                { q: "What is the height of a balanced binary tree with n nodes?", options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"], ans: 1 },
+                { q: "What is a binary search tree?", options: ["A tree where left child is smaller and right is larger", "A tree with two children", "A tree with no children", "A tree with only left children"], ans: 0 },
+                { q: "What is a heap?", options: ["A complete binary tree with heap property", "A sorted array", "A linked list", "A graph"], ans: 0 },
+                { q: "What is a graph?", options: ["A collection of nodes and edges", "A linear structure", "A tree", "An array"], ans: 0 },
+                { q: "What is topological sorting?", options: ["Ordering of vertices in a DAG", "Sorting an array", "Sorting a linked list", "Sorting a tree"], ans: 0 },
+                { q: "What is dynamic programming?", options: ["Solving problems by breaking into overlapping subproblems", "Using recursion", "Using loops", "Using arrays"], ans: 0 },
+                { q: "What is a greedy algorithm?", options: ["Makes locally optimal choices", "Makes globally optimal choices", "Tries all possibilities", "Uses recursion"], ans: 0 },
+                { q: "What is the time complexity of merge sort?", options: ["O(n log n)", "O(n^2)", "O(n)", "O(log n)"], ans: 0 },
+                { q: "What is a linked list?", options: ["Nodes connected by pointers", "A contiguous array", "A tree", "A graph"], ans: 0 },
+                { q: "What is a doubly linked list?", options: ["Each node has two pointers", "Each node has one pointer", "Each node has three pointers", "Each node has no pointer"], ans: 0 },
+                { q: "What is a circular linked list?", options: ["Last node points to first", "First node points to last", "Nodes are circular", "No pointers"], ans: 0 },
+                { q: "What is a queue?", options: ["FIFO data structure", "LIFO data structure", "Tree", "Graph"], ans: 0 },
+                { q: "What is a priority queue?", options: ["Elements have priorities", "FIFO", "LIFO", "Random access"], ans: 0 },
+                { q: "What is a hash function?", options: ["Maps keys to indices", "Sorts data", "Searches data", "Traverses data"], ans: 0 },
+                { q: "What is collision in hashing?", options: ["Two keys map to same index", "Two keys map to different indices", "Key not found", "Hash table full"], ans: 0 },
+                { q: "What is a trie?", options: ["A tree for storing strings", "A hash table", "A graph", "An array"], ans: 0 }
+            ],
+            'AI': [
+                { q: "What does AI stand for?", options: ["Automatic Intelligence", "Artificial Intelligence", "Advanced Integration", "None"], ans: 1 },
+                { q: "Which of these is a popular AI library in Python?", options: ["NumPy", "Pandas", "TensorFlow", "Matplotlib"], ans: 2 },
+                { q: "What is Machine Learning?", options: ["Hardcoding rules", "Learning from data", "Manual calculations", "None"], ans: 1 },
+                { q: "What does NLP stand for?", options: ["Natural Language Processing", "Neural Logic Programming", "New Language Protocol", "None"], ans: 0 },
+                { q: "What is supervised learning?", options: ["Learning with labeled data", "Learning without labeled data", "Reinforcement learning", "Unsupervised"], ans: 0 },
+                { q: "What is a neural network?", options: ["A computing system inspired by biological brains", "A hardware network", "A database", "A web framework"], ans: 0 },
+                { q: "What is deep learning?", options: ["Machine learning with many layers", "Basic ML", "Data analysis", "None"], ans: 0 },
+                { q: "Which of these is a type of AI?", options: ["Narrow AI", "General AI", "Super AI", "All of the above"], ans: 3 },
+                { q: "What is reinforcement learning?", options: ["Learning by rewards and penalties", "Learning from labels", "Learning from unlabeled data", "None"], ans: 0 },
+                { q: "What is a chatbot?", options: ["An AI that chats", "A hardware bot", "A game", "None"], ans: 0 },
+                { q: "What is the Turing Test?", options: ["Test of a machine's ability to exhibit intelligent behavior", "A coding test", "A hardware test", "None"], ans: 0 },
+                { q: "What is computer vision?", options: ["AI interpreting images", "AI interpreting text", "AI interpreting audio", "None"], ans: 0 },
+                { q: "Which algorithm is used for classification?", options: ["Logistic Regression", "Linear Regression", "K-Means", "PCA"], ans: 0 },
+                { q: "What is overfitting?", options: ["Model performs well on train data but poor on test data", "Model performs well on both", "Model performs poorly on both", "None"], ans: 0 },
+                { q: "What is a generative AI?", options: ["AI that generates new content", "AI that classifies", "AI that predicts numbers", "None"], ans: 0 },
+                { q: "What is unsupervised learning?", options: ["Learning without labeled data", "Learning with labels", "Reinforcement learning", "None"], ans: 0 },
+                { q: "What is clustering?", options: ["Grouping similar data points", "Classifying data", "Predicting values", "Reducing dimensions"], ans: 0 },
+                { q: "What is a decision tree?", options: ["A tree-based model for decisions", "A neural network", "A clustering algorithm", "A regression model"], ans: 0 },
+                { q: "What is a random forest?", options: ["Ensemble of decision trees", "A single decision tree", "A neural network", "A clustering algorithm"], ans: 0 },
+                { q: "What is gradient descent?", options: ["Optimization algorithm for minimizing loss", "A clustering algorithm", "A classification algorithm", "A regression algorithm"], ans: 0 },
+                { q: "What is a loss function?", options: ["Measures error of a model", "Measures accuracy", "Measures speed", "Measures complexity"], ans: 0 },
+                { q: "What is a confusion matrix?", options: ["Table for evaluating classification", "A matrix of numbers", "A neural network", "A clustering algorithm"], ans: 0 },
+                { q: "What is precision?", options: ["True positives / (true positives + false positives)", "True positives / (true positives + false negatives)", "Accuracy", "Recall"], ans: 0 },
+                { q: "What is recall?", options: ["True positives / (true positives + false negatives)", "True positives / (true positives + false positives)", "Accuracy", "Precision"], ans: 0 },
+                { q: "What is F1 score?", options: ["Harmonic mean of precision and recall", "Average of precision and recall", "Sum of precision and recall", "Product of precision and recall"], ans: 0 },
+                { q: "What is a support vector machine?", options: ["A classification algorithm", "A clustering algorithm", "A regression algorithm", "A neural network"], ans: 0 },
+                { q: "What is k-means?", options: ["A clustering algorithm", "A classification algorithm", "A regression algorithm", "A neural network"], ans: 0 },
+                { q: "What is PCA?", options: ["Principal Component Analysis for dimensionality reduction", "A clustering algorithm", "A classification algorithm", "A regression algorithm"], ans: 0 },
+                { q: "What is a convolutional neural network (CNN)?", options: ["A neural network for image processing", "A neural network for text", "A neural network for audio", "A neural network for tabular data"], ans: 0 },
+                { q: "What is a recurrent neural network (RNN)?", options: ["A neural network for sequential data", "A neural network for images", "A neural network for tabular data", "A neural network for graphs"], ans: 0 }
+            ],
+            'Cyber Security': [
+                { q: "What does CIA triad stand for?", options: ["Confidentiality, Integrity, Availability", "Control, Integrity, Access", "Confidentiality, Identity, Authorization", "None"], ans: 0 },
+                { q: "What is phishing?", options: ["Hacking a network", "Stealing physical hardware", "Tricking users to reveal sensitive info", "Encrypting data"], ans: 2 },
+                { q: "What is a firewall used for?", options: ["Cooling system", "Blocking unauthorized access", "Increasing speed", "Storing data"], ans: 1 },
+                { q: "What is encryption?", options: ["Converting plaintext to ciphertext", "Converting ciphertext to plaintext", "Deleting data", "Backing up data"], ans: 0 },
+                { q: "What is malware?", options: ["Good software", "Malicious software", "Hardware issue", "Network protocol"], ans: 1 },
+                { q: "What is a VPN?", options: ["Virtual Private Network", "Virtual Public Network", "Verified Personal Network", "None"], ans: 0 },
+                { q: "What is ethical hacking?", options: ["Authorized hacking to test security", "Illegal hacking", "Hardware repair", "None"], ans: 0 },
+                { q: "What is a virus?", options: ["Self-replicating malware", "Good software", "Hardware", "Network"], ans: 0 },
+                { q: "What is two-factor authentication?", options: ["Using two methods to verify identity", "Using two passwords", "Using two accounts", "None"], ans: 0 },
+                { q: "What is a DDoS attack?", options: ["Distributed Denial of Service", "Data Denial of Service", "Direct Denial of Service", "None"], ans: 0 },
+                { q: "What is SQL injection?", options: ["Injecting malicious SQL code", "Injecting a virus", "Injecting hardware", "None"], ans: 0 },
+                { q: "What is a zero-day vulnerability?", options: ["A flaw unknown to the vendor", "A flaw fixed immediately", "A fake flaw", "None"], ans: 0 },
+                { q: "What is the purpose of a password manager?", options: ["Store and generate strong passwords", "Hack passwords", "Share passwords", "None"], ans: 0 },
+                { q: "What is ransomware?", options: ["Malware that demands payment", "Free software", "A network tool", "None"], ans: 0 },
+                { q: "What is a botnet?", options: ["A network of infected devices", "A good network", "A hardware network", "None"], ans: 0 },
+                { q: "What is a man-in-the-middle attack?", options: ["Attacker intercepts communication", "Attacker steals hardware", "Attacker floods network", "Attacker guesses passwords"], ans: 0 },
+                { q: "What is a brute force attack?", options: ["Trying all possible combinations", "Using a virus", "Intercepting traffic", "Social engineering"], ans: 0 },
+                { q: "What is social engineering?", options: ["Manipulating people to reveal information", "Hacking software", "Breaking hardware", "Network attack"], ans: 0 },
+                { q: "What is a Trojan horse?", options: ["Malware disguised as legitimate software", "A virus", "A worm", "A firewall"], ans: 0 },
+                { q: "What is a worm?", options: ["Self-replicating malware that spreads over networks", "A virus", "A Trojan", "A firewall"], ans: 0 },
+                { q: "What is a keylogger?", options: ["Software that records keystrokes", "A hardware device", "A firewall", "A VPN"], ans: 0 },
+                { q: "What is a rootkit?", options: ["Malware that hides its presence", "A virus", "A Trojan", "A worm"], ans: 0 },
+                { q: "What is a honeypot?", options: ["A decoy system to attract attackers", "A firewall", "A VPN", "A password manager"], ans: 0 },
+                { q: "What is penetration testing?", options: ["Testing security by simulating attacks", "Testing performance", "Testing usability", "Testing compatibility"], ans: 0 },
+                { q: "What is a security audit?", options: ["A systematic evaluation of security", "A performance test", "A usability test", "A compatibility test"], ans: 0 },
+                { q: "What is GDPR?", options: ["General Data Protection Regulation", "Global Data Privacy Regulation", "General Data Privacy Rule", "Global Data Protection Rule"], ans: 0 },
+                { q: "What is a digital signature?", options: ["A cryptographic proof of authenticity", "A scanned signature", "A password", "A certificate"], ans: 0 },
+                { q: "What is SSL/TLS?", options: ["Protocols for secure communication", "A firewall", "A VPN", "A password manager"], ans: 0 },
+                { q: "What is a security patch?", options: ["A fix for a vulnerability", "A new feature", "A backup", "A firewall rule"], ans: 0 },
+                { q: "What is least privilege?", options: ["Giving minimal access rights", "Giving maximum access rights", "No access rights", "Full access rights"], ans: 0 }
+            ],
+            'Cloud Computing': [
+                { q: "Which of these is a cloud service provider?", options: ["AWS", "Google Cloud", "Azure", "All of the above"], ans: 3 },
+                { q: "What does SaaS stand for?", options: ["Software as a Service", "System as a Service", "Storage as a Service", "Security as a Service"], ans: 0 },
+                { q: "What is IaaS?", options: ["Infrastructure as a Service", "Internet as a Service", "Integration as a Service", "None"], ans: 0 },
+                { q: "Which cloud model is accessible to everyone?", options: ["Private Cloud", "Public Cloud", "Hybrid Cloud", "Community Cloud"], ans: 1 },
+                { q: "What is virtualization?", options: ["Creating a virtual version of something", "Physical server setup", "Network routing", "Data storage"], ans: 0 },
+                { q: "What is PaaS?", options: ["Platform as a Service", "Program as a Service", "Protocol as a Service", "None"], ans: 0 },
+                { q: "What is a hybrid cloud?", options: ["Mix of private and public cloud", "Only public cloud", "Only private cloud", "None"], ans: 0 },
+                { q: "What is AWS?", options: ["Amazon Web Services", "Apple Web Services", "Advanced Web Services", "None"], ans: 0 },
+                { q: "What is Azure?", options: ["Microsoft's cloud platform", "Google's cloud platform", "Amazon's cloud platform", "None"], ans: 0 },
+                { q: "What is serverless computing?", options: ["Running code without managing servers", "No servers exist", "Using only physical servers", "None"], ans: 0 },
+                { q: "What is scalability in cloud?", options: ["Ability to handle growth", "Ability to shrink", "Fixed capacity", "None"], ans: 0 },
+                { q: "What is elasticity in cloud?", options: ["Automatic scaling up/down", "Fixed resources", "Physical scaling", "None"], ans: 0 },
+                { q: "What is a container in cloud (e.g., Docker)?", options: ["Lightweight isolated environment", "A heavy VM", "A physical server", "None"], ans: 0 },
+                { q: "What is cloud storage?", options: ["Storing data on remote servers", "Storing data on local disk", "Storing data on RAM", "None"], ans: 0 },
+                { q: "What is multi-tenancy?", options: ["Multiple users share same resources", "Single user uses resources", "Multiple servers for one user", "None"], ans: 0 },
+                { q: "What is a virtual machine?", options: ["A software emulation of a computer", "A physical computer", "A container", "A serverless function"], ans: 0 },
+                { q: "What is a hypervisor?", options: ["Software that creates and runs VMs", "A container runtime", "A cloud provider", "A storage service"], ans: 0 },
+                { q: "What is auto-scaling?", options: ["Automatically adjusting resources based on demand", "Manual scaling", "Fixed resources", "None"], ans: 0 },
+                { q: "What is a cloud region?", options: ["A geographic area with data centers", "A single data center", "A network zone", "A service tier"], ans: 0 },
+                { q: "What is a cloud availability zone?", options: ["An isolated data center within a region", "A region", "A network", "A service"], ans: 0 },
+                { q: "What is object storage?", options: ["Storage for unstructured data as objects", "Storage for structured data", "Block storage", "File storage"], ans: 0 },
+                { q: "What is block storage?", options: ["Storage as raw blocks", "Storage as objects", "Storage as files", "Storage as tables"], ans: 0 },
+                { q: "What is file storage?", options: ["Storage as files and folders", "Storage as blocks", "Storage as objects", "Storage as tables"], ans: 0 },
+                { q: "What is a CDN?", options: ["Content Delivery Network", "Cloud Data Network", "Central Data Node", "Content Data Node"], ans: 0 },
+                { q: "What is a load balancer?", options: ["Distributes traffic across servers", "Stores data", "Manages databases", "Runs code"], ans: 0 },
+                { q: "What is a VPC?", options: ["Virtual Private Cloud", "Virtual Public Cloud", "Verified Private Cloud", "None"], ans: 0 },
+                { q: "What is cloud migration?", options: ["Moving services to the cloud", "Moving from cloud to on-prem", "Moving between clouds", "None"], ans: 0 },
+                { q: "What is a cloud service level agreement (SLA)?", options: ["A contract defining service guarantees", "A pricing plan", "A security policy", "A backup plan"], ans: 0 },
+                { q: "What is a cloud cost optimization?", options: ["Reducing cloud spending", "Increasing cloud spending", "Fixed spending", "None"], ans: 0 },
+                { q: "What is a cloud-native application?", options: ["Built for the cloud", "Built for on-prem", "Built for mobile", "Built for desktop"], ans: 0 }
+            ]
+        };
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let activeCategory = "";
+        const QUESTIONS_PER_QUIZ = 30;
+
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function startQuiz(category) {
+            activeCategory = category;
+            let fullPool = quizData[category] || [];
+
+            if (fullPool.length === 0) return alert("Questions coming soon!");
+
+            document.getElementById('navLinks').classList.remove('active');
+            document.getElementById('menuToggle').classList.remove('active');
+
+            let seenQuestions = JSON.parse(localStorage.getItem(`quiesSeen_${category}`)) || [];
+            let unseenPool = fullPool.filter(q => !seenQuestions.includes(q.q));
+
+            if (unseenPool.length < QUESTIONS_PER_QUIZ) {
+                seenQuestions = [];
+                unseenPool = fullPool;
+            }
+
+            let shuffledPool = shuffleArray([...unseenPool]);
+            currentQuestions = shuffledPool.slice(0, QUESTIONS_PER_QUIZ);
+
+            currentQuestions.forEach(q => {
+                if (!seenQuestions.includes(q.q)) {
+                    seenQuestions.push(q.q);
+                }
+            });
+            localStorage.setItem(`quiesSeen_${category}`, JSON.stringify(seenQuestions));
+
+            currentQuestionIndex = 0;
+            score = 0;
+
+            document.getElementById('modalCategoryName').innerText = category;
+            document.getElementById('quizModal').classList.add('active');
+            loadQuestion();
+        }
+
+        function closeQuiz() {
+            document.getElementById('quizModal').classList.remove('active');
+        }
+
+        function loadQuestion() {
+            const qData = currentQuestions[currentQuestionIndex];
+            document.getElementById('quizProgress').innerText = `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
+            document.getElementById('questionText').innerText = qData.q;
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            qData.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, btn) {
+            const correctIndex = currentQuestions[currentQuestionIndex].ans;
+            const allBtns = document.querySelectorAll('.option-btn');
+
+            allBtns.forEach(b => b.style.pointerEvents = 'none');
+
+            if (selectedIndex === correctIndex) {
+                btn.classList.add('correct');
+                score++;
+            } else {
+                btn.classList.add('wrong');
+                allBtns[correctIndex].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < currentQuestions.length) {
+                    loadQuestion();
+                } else {
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function finishQuiz() {
+            let playerName = prompt("Quiz Complete! Enter your name for the Leaderboard:", "Guest");
+            if (!playerName || playerName.trim() === "") playerName = "Guest";
+
+            const total = currentQuestions.length;
+            const percent = Math.round((score / total) * 100);
+
+            leaderboardData.push({
+                id: Date.now() + '-' + Math.random().toString(36).substr(2, 9),
+                name: playerName,
+                score: score,
+                category: activeCategory,
+                total: total,
+                percent: percent
+            });
+            localStorage.setItem('quiesLeaderboard', JSON.stringify(leaderboardData));
+
+            updateLeaderboardUI();
+            document.getElementById('quizModal').classList.remove('active');
+            showDashboard(playerName, score, total, percent, activeCategory);
+        }
+
+        function showDashboard(name, sc, total, percent, category) {
+            document.getElementById('dashGreeting').innerText = `Great job, ${name}!`;
+            document.getElementById('dashScore').innerText = sc;
+            document.getElementById('dashTotal').innerText = total;
+            document.getElementById('dashPercent').innerText = percent + '%';
+            document.getElementById('dashCategory').innerHTML = '<i class="fas fa-bookmark"></i> ' + category;
+
+            const fill = document.getElementById('dashProgressFill');
+            fill.style.width = '0%';
+            setTimeout(() => { fill.style.width = percent + '%'; }, 120);
+
+            let msg = '';
+            if (percent === 100) msg = '🏆 Perfect score! You are a legend!';
+            else if (percent >= 80) msg = '🌟 Excellent work! Keep it up!';
+            else if (percent >= 60) msg = '👍 Good job! Almost there!';
+            else if (percent >= 40) msg = '💪 Not bad! Practice makes perfect.';
+            else msg = '📚 Keep learning! Try again soon.';
+            document.getElementById('dashMessage').innerText = msg;
+
+            document.getElementById('dashboardModal').classList.add('active');
+        }
+
+        function closeDashboard() {
+            document.getElementById('dashboardModal').classList.remove('active');
+        }
+    </script>
+</body>
+
+</html>
